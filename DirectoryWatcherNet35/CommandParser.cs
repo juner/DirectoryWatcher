@@ -35,6 +35,7 @@
             | System.IO.NotifyFilters.LastWrite
             | System.IO.NotifyFilters.FileName
             | System.IO.NotifyFilters.DirectoryName;
+        public bool RequestedHelp { private set; get; } = false;
         /// <summary>
         /// 次のコマンド処理モード定義
         /// </summary>
@@ -70,6 +71,10 @@
                 else if (Param[0] == 'F' || Param[0] == 'F')
                 {
                     NextCommand = NextCommandType.SetFilter;
+                }
+                else if (Param[0] == 'H' || Param[1] == 'h')
+                {
+                    RequestedHelp = true;
                 }
             }
             else

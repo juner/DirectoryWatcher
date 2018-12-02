@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -10,7 +11,7 @@ namespace DirectoryWatcher
 {
     class Program
     {
-        static async Task Main(string[] args)
+        static async Task<int> Main(string[] args)
         {
             var listener = new TextWriterTraceListener(Console.Out);
             Trace.Listeners.Add(listener);
@@ -18,6 +19,18 @@ namespace DirectoryWatcher
             {
                 var Parser = new CommandParser();
                 Parser.Parse(args);
+                if (Parser.RequestedHelp)
+                {
+                    var ProcessName = Process.GetCurrentProcess().ProcessName;
+                    Console.WriteLine($"{ProcessName} [-Path DirectoryFullPath [-Filter FileFilter]]");
+                    Console.WriteLine($"ext");
+                    Console.WriteLine($"\t{ProcessName} -Path \"{Directory.GetCurrentDirectory()}\" -Filter \"*.txt\"");
+                    Console.WriteLine();
+                    Console.WriteLine($"stop the Ctrl + C");
+                    return 0;
+                }
+                if (!Directory.Exists(Parser.Path))
+                    Console.WriteLine($"Not Found {Parser.Path}");
                 using (var TokenSource = new CancellationTokenSource())
                 using (SetConsoleCtrl.Create(type =>
                 {
@@ -39,7 +52,9 @@ namespace DirectoryWatcher
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                throw e;
             }
+            return 0;
         }
     }
     public class SetConsoleCtrl : IDisposable
