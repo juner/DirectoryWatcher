@@ -20,5 +20,23 @@ namespace DirectoryWatcher.ViewModel
                 return;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(PropertyName));
         }
+        bool CanClear() => Informations.Any();
+        void ClearAction()
+        {
+            foreach(var index in Informations.Select((v,i)=>i).Reverse())
+                Informations.RemoveAt(index);
+        }
+        /// <summary>
+        /// 削除ボタン
+        /// </summary>
+        public ICommand ClearCommand { get; private set; }
+        public ObservableCollection<NotifyInformation> Informations { get; private set; } = new ObservableCollection<NotifyInformation>();
+        
+        
     }
+    public class NotifyInformation
+    {
+
+    }
+
 }

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DirectoryWatcher</RootNamespace>
-    <AssemblyName>DirectoryWatcherLib</AssemblyName>
+    <AssemblyName>DirectoryWatcherLib.NET35</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -44,8 +44,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandParser.cs" />
-    <Compile Include="DirectoryWatcher.cs" />
+    <Compile Include="..\DirectoryWatcher\CommandParser.cs">
+      <Link>CommandParser.cs</Link>
+    </Compile>
+    <Compile Include="..\DirectoryWatcher\DirectoryWatcher.cs">
+      <Link>DirectoryWatcher.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
