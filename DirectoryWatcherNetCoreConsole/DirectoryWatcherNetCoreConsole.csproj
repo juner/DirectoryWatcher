@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>DirectoryWatcher</RootNamespace>
+    <AssemblyName>DirectoryWatcher</AssemblyName>
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DirectoryWatcher\DirectoryWatcher.csproj" />
+  </ItemGroup>
+
+</Project>
